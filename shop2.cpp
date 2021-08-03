@@ -1,49 +1,48 @@
-// C++ program to implement the program
-// that illustrates Online shopping
-#include <bits/stdc++.h>
+
+#include<bits/stdc++.h>
 using namespace std;
 
-char c1, confirm_quantity;
+//defining global variables
 float quantity;
-int selectedNum;
 double total_amount = 0;
+char c1, confirm_quantity;
+int selectedNum;
 int flag = 0;
 
-// Stores items with their corresponding
-// price
-map<string, double> items = {
-	{ "Samsung", 15000 },
-	{ "Redmi", 12000 },
-	{ "Apple", 100000 },
-	{ "Macbook", 250000 },
-	{ "HP", 40000 },
-	{ "Lenovo", 35000 },
-	{ "C", 1000 },
-	{ "C++", 3000 },
-	{ "Java", 4000 },
-	{ "Python", 3500 }
+
+
+//store items with their corresponding price in map
+map<string,double> items = {
+   
+    {"Apple",55999},
+    {"Samsung",19999},
+    {"MI",21999},
+    {"AndroidTV",30799},
+    {"boAT",3699},
+    {"JBL",2499},
+    
 };
+//store selected items with their quantity in a map
+map<string,int>selected_items;
 
-// Stores the selected items with
-// their quantity
-map<string, int> selected_items;
 
-// Function to print the bill after shopping
+
+//// Function to print the bill after shopping
 // is completed prints the items, quantity,
 // their cost along with total amount
 void printBill(map<string, double> items,
-			map<string, int> selected_items,
+			map<string, int> selected_item,
 			float total_amount)
 {
 	cout << "Item	 "
 		<< "Quantity	 "
 		<< "Cost\n";
 
-	for (auto j = selected_items.begin();
-		j != selected_items.end(); j++) {
+	for (auto j = selected_item.begin();
+		j != selected_item.end(); j++) {
 		cout << j->first << "	 ";
 		cout << j->second << "		 ";
-		cout << (selected_items[j->first])
+		cout << (selected_item[j->first])
 					* (items[j->first])
 			<< endl;
 	}
@@ -58,8 +57,9 @@ void printBill(map<string, double> items,
 		<< " ONLINE SHOPPING*****";
 }
 
-// Function to ask the basic details of
-// any customer
+
+
+//Function to ask basic details of customer
 void customerDetails()
 {
 
@@ -77,55 +77,36 @@ void customerDetails()
 	cout << "\n";
 }
 
-// showMenu() is to print the
-// menu to the user
-void showMenu()
-{
-	cout << "Menu\n";
-	cout << "= = = = = = = = "
-		<< " = = = = = \n";
-	cout << "1.Mobile\n2.laptop\n3"
-		<< ".Computer courses\n";
-	cout << "= = = = = = = = "
-		<< " = = = = = \n";
-}
-
-// Function to display the mobile products
-void showMobileMenu()
+void showdeptMenu()
 {
 	cout << "- - - - - - - - - - -"
-		<< " - -\nItem	 Cost\n";
-	cout << "1.Samsung Rs.15, 000/-\n";
-	cout << "2.Redmi Rs.12, 000/-\n";
-	cout << "3.Apple Rs.1, 00, 000/-\n";
+		<< " - -\nCategories\n";
+	cout << "1.Mobiles/Computers\n";
+	cout << "2.TV/Appliances/Electronics\n";
 	cout << "- - - - - - - - - - - - -\n";
 }
 
-// Function to display Laptop products
-void showLaptopMenu()
+void showmobcompMenu()
 {
 	cout << "- - - - - - - - - - -"
-		<< " - -\nItem	 Cost\n";
-	cout << "1.Macbook Rs.2, 00, 000/-\n";
-	cout << "2.HP	 Rs.40, 000/-\n";
-	cout << "3.Lenovo Rs.35, 000/-\n";
-	cout << "- - - - - - - - - - - - -\n";
+		<< " - -\nItems     Price \n";
+	cout << "1.Samsung  Rs-19999/-\n";
+    cout << "2.MI       Rs-21999/-\n";
+	cout << "3.Apple    Rs-55999/-\n";
+		cout << "- - - - - - - - - - - - -\n";
 }
 
-// if the user selects computer courses,
-// then courses list will be displayed
-void showComputerCourseMenu()
+void showtvMenu()
 {
-	cout << "- - - - - - - - - - "
-		<< " - -\nItem	 Cost\n";
-	cout << "1.C	 Rs.1, 000/-\n";
-	cout << "2.C++	 Rs.3, 000/-\n";
-	cout << "3.Java	 Rs.4, 000/-\n";
-	cout << "4.Python Rs.3, 500/-\n";
+	cout << "- - - - - - - - - - -"
+		<< " - -\nItems             Price \n";
+	cout << "1.Android TV           Rs-19999/-\n";
+	cout << "2.boAT Headphones      Rs-21999/-\n";
+	cout << "3.JBL Headphones       Rs-45490/-\n";
 	cout << "- - - - - - - - - - - - -\n";
 }
 
-// Function to display the mobile category
+//Function to display the mobile category
 void selectedMobile()
 {
 	cout << "Do you wish to conti"<< "nue?(for yes"<< "+ "<< "press (Y/y ), "<< " if no press other letter ): ";
@@ -169,16 +150,16 @@ void selectedMobile()
 				}
 			}
 
-			// Selected Redmi
+			// Selected MI
 			if (selectedNum == 2) {
 
-				cout << "selected Redmi\n";
+				cout << "selected MI\n";
 
 				do {
 					cout << "Quantity: ";
 					cin >> quantity;
 					cout << "You have selec"
-						<< "ted Redmi - "
+						<< "ted MI - "
 						<< quantity << endl;
 					cout << "Are you sure?(f"
 						<< "or yes press (Y/y ), "
@@ -194,8 +175,8 @@ void selectedMobile()
 					|| confirm_quantity == 'Y') {
 
 					total_amount += quantity
-									* items["Redmi"];
-					selected_items["Redmi"] = quantity;
+									* items["MI"];
+					selected_items["MI"] = quantity;
 					cout << "amount = "
 						<< total_amount << endl;
 				}
@@ -243,8 +224,8 @@ void selectedMobile()
 	}
 }
 
-// If Laptop category is selected
-void selectedLaptop()
+// If tv/headphone category is selected
+void selectedTvheadphone()
 {
 	cout << "Do you wish to continue?"
 		<< "(for yes press (Y/y ), "
@@ -259,16 +240,16 @@ void selectedLaptop()
 			|| selectedNum == 2
 			|| selectedNum == 3) {
 
-			// selected Macbook
+			// selected Android Tv
 			if (selectedNum == 1) {
-				cout << "selected Macbook\n";
+				cout << "selected Android TV\n";
 				do {
 
 					cout << "Quantity: ";
 					cin >> quantity;
 
 					cout << "You have selected"
-						<< " Macbook - "
+						<< " Android TV - "
 						<< quantity << endl;
 					cout << "Are you sure?"
 						<< "(for yes press (Y/y ), "
@@ -283,22 +264,22 @@ void selectedLaptop()
 				if (confirm_quantity == 'y'
 					|| confirm_quantity == 'Y') {
 					total_amount += quantity
-									* items["Macbook"];
-					selected_items["Macbook"] = quantity;
+									* items["AndroidTV"];
+					selected_items["AndroidTV"] = quantity;
 					cout << "amount = "
 						<< total_amount
 						<< endl;
 				}
 			}
 
-			// selected HP
+			// selected boAt
 			if (selectedNum == 2) {
-				cout << "selected HP\n";
+				cout << "selected boAT headphones\n";
 				do {
 					cout << "Quantity: ";
 					cin >> quantity;
 					cout << "You have selected"
-						<< " HP - "
+						<< " boAT headphones- "
 						<< quantity << endl;
 					cout << "Are you sure?"
 						<< "(for yes press (Y/y ), "
@@ -314,24 +295,24 @@ void selectedLaptop()
 				if (confirm_quantity == 'y'
 					|| confirm_quantity == 'Y') {
 					total_amount += quantity
-									* items["HP"];
-					selected_items["HP"] = quantity;
+									* items["boAT"];
+					selected_items["boAT"] = quantity;
 					cout << "amount = "
 						<< total_amount
 						<< endl;
 				}
 			}
 
-			// selected Lenovo
+			// selected jbl
 			if (selectedNum == 3) {
-				cout << "selected Lenovo\n";
+				cout << "selected JBL Headphones\n";
 				do {
 
 					cout << "Quantity: ";
 					cin >> quantity;
 
 					cout << "You have selected"
-							" Lenovo - "
+							" JBL Headphones - "
 						<< quantity << endl;
 					cout << "Are you sure?"
 						<< "(for yes press (Y/y ), "
@@ -346,75 +327,12 @@ void selectedLaptop()
 				if (confirm_quantity == 'y'
 					|| confirm_quantity == 'Y') {
 					total_amount += quantity
-									* items["Lenovo"];
-					selected_items["Lenovo"] = quantity;
+									* items["JBL"];
+					selected_items["JBL"] = quantity;
 					cout << "amount = "
 						<< total_amount
 						<< endl;
 				}
-			}
-		}
-		else {
-			flag = 1;
-		}
-	}
-	else {
-		flag = 1;
-	}
-}
-
-// If computer course
-// category is selected
-void selectedCourses()
-{
-	cout << "Do you wish to continue?"
-		<< "(for yes press (Y/y ), "
-		<< " if no press other letter ): ";
-	cin >> c1;
-	if (c1 == 'Y' || c1 == 'y') {
-		cout << "Enter the respective number: ";
-		cin >> selectedNum;
-		if (selectedNum == 1
-			|| selectedNum == 2
-			|| selectedNum == 3
-			|| selectedNum == 4) {
-
-			// selected C
-			if (selectedNum == 1) {
-				cout << "selected C Language"
-					<< " course\n";
-				total_amount += items["C"];
-				selected_items["C"]++;
-				cout << "amount = "
-					<< total_amount
-					<< endl;
-			}
-
-			// selected C++
-			if (selectedNum == 2) {
-				cout << "selected C++ Language course\n";
-				total_amount += items["C++"];
-				selected_items["C++"]++;
-				cout << "amount = " << total_amount << endl;
-			}
-
-			// selected Java
-			if (selectedNum == 3) {
-				cout << "selected Java Language course\n";
-				total_amount += items["Java"];
-				selected_items["Java"]++;
-				cout << "amount = " << total_amount << endl;
-			}
-
-			// selected python
-			if (selectedNum == 4) {
-				cout << "selected Python"
-					<< " Language course\n";
-				total_amount += items["Python"];
-				selected_items["Python"]++;
-				cout << "amount = "
-					<< total_amount
-					<< endl;
 			}
 		}
 		else {
@@ -433,7 +351,7 @@ int main()
 	customerDetails();
 
 	do {
-		showMenu();
+		showdeptMenu();
 		cout << "Do you wish to continue?"
 			<< "(for yes press (Y/y ), "
 			<< " if no press other letter ): ";
@@ -443,30 +361,24 @@ int main()
 			cout << "Enter respective number: ";
 			int num;
 			cin >> num;
-			if (num == 1 || num == 2
-				|| num == 3) {
+			if (num == 1 || num == 2)
+			{
 				switch (num) {
 				case 1:
 
 					// For Mobile
-					showMobileMenu();
+					showmobcompMenu();
 					selectedMobile();
 					break;
 
 				case 2:
 
 					// For Laptop
-					showLaptopMenu();
-					selectedLaptop();
+					showtvMenu();
+					selectedTvheadphone();
 					break;
 
-				case 3:
-
-					// For computer course
-					showComputerCourseMenu();
-					selectedCourses();
-					break;
-				}
+					}
 			}
 			else {
 				flag = 1;
